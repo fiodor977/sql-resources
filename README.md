@@ -108,23 +108,24 @@
 
 4. CONSTRAINT
 
-	//inline
-	CREATE TABLE person (
-		nif varchar2(9) PRIMARY KEY
-	);
+		//inline
+		CREATE TABLE person (
+			nif varchar2(9) PRIMARY KEY
+		);
 	
 	
-	//out of line
-	CREATE TABLE employee (
-		emp_id NUMBER(10),
-		first_name VARCHAR2(200),
-		last_name VARCHAR2(200),
-		dept_id NUMBER(10),
-		CONSTRAINT pk_emp PRIMARY KEY (emp_id)
-	);
+		//out of line
+		CREATE TABLE employee (
+			emp_id NUMBER(10),
+			first_name VARCHAR2(200),
+			last_name VARCHAR2(200),
+			dept_id NUMBER(10),
+			CONSTRAINT pk_emp PRIMARY KEY (emp_id)
+		);
 	
 
 	4.1. NOT NULL
+		
 		//inline
 		CREATE TABLE Persons (
     			ID int NOT NULL,
