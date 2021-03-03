@@ -1,6 +1,4 @@
-INDICE
-
-----------------------------------------
+#SQL CheatSheet
 
 1. CREATE TABLE
 	1.1. Data types (varchar2, char, date, number, long, clob, raw, long, raw)
@@ -103,18 +101,93 @@ INDICE
 
 
 4. CONSTRAINT
-		
-	4.1. NOT NULL
 
+	//inline
+	CREATE TABLE person (
+		nif varchar2(9) PRIMARY KEY
+	);
+	
+	
+	//out of line
+	CREATE TABLE employee (
+		emp_id NUMBER(10),
+		first_name VARCHAR2(200),
+		last_name VARCHAR2(200),
+		dept_id NUMBER(10),
+		CONSTRAINT pk_emp PRIMARY KEY (emp_id)
+	);
+	
+
+	4.1. NOT NULL
+		//inline
+		CREATE TABLE Persons (
+    			ID int NOT NULL,
+    			LastName varchar(255) NOT NULL,
+    			FirstName varchar(255) NOT NULL,
+    			Age int	
+		);
+		
+		//out of line
+		CREATE TABLE Persons (
+    			ID int,
+    			LastName varchar(255),
+    			FirstName varchar(255),
+    			Age int	
+			
+			CONSTRAINT ageNotNull CHECK (Age IS NOT NULL)
+		);
+		
+		// modified after creation
+		ALTER TABLE Persons MODIFY Age int NOT NULL;
 
 
 	4.2. UNIQUE
-
-
+		
+		//inline
+		CREATE TABLE Persons (
+  			ID int UNIQUE,
+    			LastName varchar(255) UNIQUE,
+    			FirstName varchar(255),
+    			Age int
+		);
+		
+		//outline
+		CREATE TABLE Persons (
+    			ID int NOT NULL,
+    			LastName varchar(255),
+    			FirstName varchar(255),
+    			Age int,	
+			CONSTRAINT UQ_Person UNIQUE (ID,LastName)
+		);
+		
+		//modified after creation 
+		ALTER TABLE person ADD CONSTRAINT Person_UQ UNIQUE(ID, LastName);
 
 	4.3. PRIMARY KEY
 
+		//inline
+		CREATE TABLE Persons (
+    			ID int NOT NULL PRIMARY KEY,
+    			LastName varchar(255),
+    			FirstName varchar(255),
+    			Age int
+		);
 
+		//outline
+		
+		CREATE TABLE Persons (
+    			ID int NOT NULL,
+    			LastName varchar(255),
+    			FirstName varchar(255),
+    			Age int,
+			
+			CONSTRAINT ID_PK PRIMARY KEY (ID)
+		);		
+		
+		//modified after creation
+		ALTER TABLE Persons ADD PRIMARY KEY (ID);   //without name
+		
+		ALTER TABLE Persons ADD CONSTRAINT PK_Person PRIMARY KEY (ID);   //with name
 
 	4.4. FOREIGN KEY
 
